@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mikko & Antti">
+    <title>Mikko & Antti | Virallinen Sivusto</title>
+    
+    <!-- Moderni fontti Google Fontsista -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+/* Yhteydenottolomake */
+.contact-section {
+    max-width: 600px;
+    margin: 4rem auto 2rem;
+    padding: 0 2rem;
+}
+.contact-section h2 {
+    text-align: center;
+}
+.contact-section > p {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--surface-color);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+.contact-form button {
+    width: 100%;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+}
+/* Tietoa meistä -osio */
+.about-section {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 4rem;
+}
+
+.about-content p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.about-content strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+        /* CSS-muuttujat helppoa teeman muokkausta varten */
+        :root {
+            --bg-color: #0f172a; /* Tumma sinimusta */
+            --surface-color: #1e293b; /* Korttien tausta */
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #6366f1; /* Moderni violetin/sinisen sävy */
+            --accent-hover: #4f46e5;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset ja perusasetukset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        /* Navigointi */
+        header {
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero-osio */
+        .hero {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Alustapainikkeet */
+        .platforms {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            background-color: var(--surface-color);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn.primary {
+            background-color: var(--accent-color);
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: var(--accent-hover);
+        }
+
+        .btn:not(.primary):hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Pääsisältö & Jakso-kortit (CSS Grid) */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .episode-card {
+            background-color: var(--surface-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+
+        .episode-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .tag {
+            font-size: 0.875rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .episode-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .episode-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Moderni HTML5 Audiosoitin */
+        audio {
+            width: 100%;
+            height: 40px;
+            outline: none;
+            border-radius: 9999px;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: #f1f5f9;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        /* Responsiivisuus mobiililaitteille */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Voit lisätä JS-hampurilaisvalikon myöhemmin */
+            }
+            .hero {
+                margin: 2rem auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">Mikko&<span>Antti</span></a>
+            <div class="nav-links">
+                <a href="#koti">Koti</a>
+                <a href="#jaksot">Jaksot</a>
+                <a href="#tietoa">Tietoa</a>
+                <a href="#yhteys">Ota yhteyttä</a>
+                            </div>
+        </nav>
+    </header>
+
+    <div class="hero" id="koti">
+        <h1>Mikko & Antti podcast.</h1>
+        <p>Sukella syvälle keskusteluihin, tarinoihin ja ilmiöihin.</p>
+        
+        <div class="platforms">
+            <a href="#" class="btn primary">Jaksot</a>
+            <a href="https://open.spotify.com/show/6JzzAUux0JFZvAbWlXfDzh?si=180029213cf04962" class="btn">Kuuntele Spotifyssä</a>
+            <a href="https://patreon.com/mikkojaantti?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink" class="btn" target="_blank" rel="noopener noreferrer">☕ Tarjoa kahvit</a>
+<a href="https://www.tiktok.com/@mikkojaanttipod" class="btn" target="_blank" rel="noopener noreferrer">TikTok</a>
+<a href="https://x.com/mikkojaantti" class="btn" target="_blank" rel="noopener noreferrer">𝕏</a>
+<a href="https://www.instagram.com/mikkojaanttipodcast/" class="btn" target="_blank" rel="noopener noreferrer">Instagram</a>
+
+            </div>
+    </div>
+
+    <main id="jaksot">
+        <h2 class="section-title">Kaikki Jaksot</h2>
+        
+        <div class="episodes-grid">
+            
+            <!-- Jakso 1 -->
+            <article class="episode-card">
+                <span class="tag">Jakso 1</span>
+                <h3>Kuka maksaa viulut?</h3>
+                <p>Tässä jaksossa käymme läpi Suomen maahanmuuttopolitiikkaa</p>
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/232ys6fSTrIX8jvizjeo1G?utm_source=generator&si=ecb68bb8fe55437e" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </article>
+
+            <!-- Jakso 2 -->
+            <article class="episode-card">
+                <span class="tag">Jakso 2</span>
+                <h3>Lasketaanko laskua vai kannetaanko vastuu</h3>
+                <p>Tässä jaksossa käymme läpi Suomen maahanmuuttopolitiikkaa.</p>
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/75Zg6uLIYbLiUIIXrMzgJu?utm_source=generator&si=66de70a35ec04ca5" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </article>
+
+            <!-- Jakso 3 -->
+            <article class="episode-card">
+                <span class="tag">Jakso 3</span>
+                <h3>Suomen teollisuus, verotus ja yrittäjyys</h3>
+                <p>Tässä jaksossa käymme läpi Suomen maahanmuuttopolitiikkaa.</p>
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/72UUWZN9Rqns0tqOD1El7q?utm_source=generator&si=90cd163a5aae4c70" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>       
+</article>
+<!-- Jakso 4 -->
+<article class="episode-card">
+    <span class="tag">Jakso  4 </span>
+    <h3>Sananvapauden rajat ja vaihtoehtoisen median nousu</h3>
+    <p>Tässä jaksossa Mikko ja Antti pureutuvat nykyaikaiseen mediakenttään, konsensuksen illuusioihin ja siihen, miksi virallisten narratiivien kyseenalaistamisesta on tullut yhä vaarallisempaa.</p>
+    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/1KDcM8X1wEL51JSfnmh97g?utm_source=generator&si=6be7e7fa86eb41a6" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </article>
+
+<!-- Jakso 5 -->
+<article class="episode-card">
+    <span class="tag">Jakso  5</span>
+    <h3>Kiinni Jäimme emme ole vielä julkaisseet tätä jaksoa</h3>
+    <p>Kiinni Jäimme emme ole vielä julkaisseet tätä jaksoa</p>
+    
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/TÄHÄN_JAKSON_ID?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</article>
+
+<!-- Jakso 6 -->
+<article class="episode-card">
+    <span class="tag">Jakso  6 </span>
+    <h3>Kiinni Jäimme emme ole vielä julkaisseet tätä jaksoa</h3>
+    <p>Kiinni Jäimme emme ole vielä julkaisseet tätä jaksoa</p>
+    
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/TÄHÄN_JAKSON_ID?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</article>
+
+        </div>
+    </main>
+<section id="tietoa" class="about-section">
+    <h2 class="section-title">Keitä me olemme?</h2>
+    <div class="about-content">
+        <p>Äänessä ovat <strong>Mikko ja Antti</strong>. Tuomme yhteen kaksi erilaista, mutta toisiaan täydentävää näkökulmaa yhteiskuntaan, talouteen ja päivänpolttaviin ilmiöihin.</p>
+        <p>Kun maailma ja otsikot muuttuvat yhä monimutkaisemmiksi, me haluamme purkaa asiat palasiin suoraan ja rehellisesti – ilman turhaa jargonia. Olipa kyse sitten Suomen teollisuuden tulevaisuudesta, verotuksesta tai poliittisista päätöksistä, tartumme aiheisiin pintaa syvemmältä.</p>
+        <p>Ota kuppi kahvia, laita napit korville ja liity mukaan keskusteluun.</p>
+    </div>
+</section>
+<section id="yhteys" class="contact-section">
+    <h2 class="section-title">Ota yhteyttä</h2>
+    <p>Onko sinulla aihetoive, palautetta tai haluatko vieraaksi? Laita viestiä!</p>
+    
+    <!-- Vaihda oma sähköpostiosoitteesi action-kohtaan -->
+    <form action="https://formsubmit.co/mikkoantti826@gmail.com" method="POST" class="contact-form">
+        <!-- Turvallisuusasetukset: estää roskapostia ja piilottaa captchan -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Uusi viesti podcast-sivuilta!">
+        
+        <div class="form-group">
+            <label for="name">Nimi</label>
+            <input type="text" id="name" name="Nimi" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Sähköposti</label>
+            <input type="email" id="email" name="Sähköposti" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Viesti</label>
+            <textarea id="message" name="Viesti" rows="5" required></textarea>
+        </div>
+        
+        <button type="submit" class="btn primary">Lähetä viesti</button>
+    </form>
+</section>
+
+    <footer id="tietoa">
+        <p>&copy; 2026 Mikko & Antti. Kaikki oikeudet pidätetään.</p>
+        <p style="margin-top: 1rem; font-size: 0.875rem;">Ota yhteyttä: mikkoantti826@gmail.com</p>
+    </footer>
+
+</body>
+</html>
